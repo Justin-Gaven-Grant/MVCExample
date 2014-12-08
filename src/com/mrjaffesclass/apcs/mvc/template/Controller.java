@@ -34,4 +34,45 @@ public class Controller implements MessageHandler {
    *    the value of a Model variable
    */
   public Controller() {
- 
+    // Create the local messaging class
+    mvcMessaging = new Messenger();
+
+    // Create the view and set it visible
+    View view = new View(mvcMessaging);    // This creates our view
+    view.init();
+    view.setVisible(true);
+
+    // Create the model
+    Model model = new Model(mvcMessaging);  // This creates our model
+    model.init();
+    
+    GameOver gameOver= new GameOver(mvcMessaging);
+    gameOver.init();
+  }
+
+  /**
+   * Initialize the model here and subscribe
+   * to any required messages
+   * 
+   * "this" refers to this controller object.
+   */
+  public void init() {
+
+  }
+
+  @Override
+  public void messageHandler(String messageName, Object messagePayload) {
+  
+  }
+  
+  /**
+   * Program entry -- main is called when the program starts
+   *
+   * @param args the command line arguments
+   */
+  public static void main(String[] args) {
+    Controller app = new Controller();  // Create our controller...
+    app.init();                         // ...and init it too
+  }
+  
+}
